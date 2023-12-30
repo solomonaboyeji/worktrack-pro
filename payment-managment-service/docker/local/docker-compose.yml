@@ -1,0 +1,79 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  payments-mgt-api:
+    container_name: payments-mgt-api
+    image: payments-mgt
+    restart: unless-stopped
+    ports:
+      - 8500:8100 # tcp
+      - 8501:8101 # ssl
+    build: 
+      context: ../../
+      dockerfile: docker/Dockerfile
+
+    volumes:
+      - ./../../:/usr/src/payments-mgt-api
+
+    # command: hypercorn --config file:../../hypercorn/hypercorn_conf.py src.main:app
+    command: uvicorn src.main:app --reload --port 8100 --host 0.0.0.0
+
+    environment:
+      - APP_NAME=WTP-PAYMENT-SERVICE
+      
+      - ALLOW_ORIGINS=http://localhost,http://localhost:8000
+      - ALLOW_ORIGIN_REGEX=https://.*\\.regnify\\.com|https://.*\\.azurestaticapps\\.net|https://.*\\.netlify\\.app
+      
+      - DOC_URL=/docs
+      - REDOC_URL=/redoc
+
+      - DB_USER=wtp-payments
+      - DB_PASSWORD=WTPPASSWORD
+      - DB_HOST=postgres
+      - DB_NAME=wtp-payments-db
+      - DB_PORT=5432
+
+      - OPENAPI_URL=/openapi.json
+      - DISPLAY_SCOPES_IN_DOCUMENTATION=True
+      
+      # * This should only be used for development on your local machine.
+      # * Mount a volume on the server to reference these files.
+      - KEYFILE=/usr/src/regnify-api/hypercorn/key.pem
+      - CERTFILE=/usr/src/regnify-api/hypercorn/cert.pem
+
+      - TCP_PORT=8500
+      - SSL_PORT=8501
+      - SHOULD_RELOAD=True
+      - MAX_WORKERS=1
+      - USE_SSL=True
+      - USE_TCP=True
+      
+      #section for external urls without the trailing foward slash where id is needed
+      - TOKEN_URL=http://172.19.0.1:5000/token
+      - GET_CURRENT_USER=http://172.19.0.1:5000/user
+      - GET_TASK_URL=http://172.19.0.1:5000/task
+      - GET_TIMESHEETS_URL=http://172.19.0.1:5000/timesheets
+      - GET_TIMESHEETS_BY_TASK_ID_URL=http://172.19.0.1:5000/timesheets/task
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15.0-alpine
+    container_name: wtp-payment-db
+    restart: always
+    # volumes:
+      # - ~/dockerPostgres/regnify:/var/lib/postgresql/data
+      
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: wtp-payments
+      POSTGRES_PASSWORD: WTPPASSWORD
+      POSTGRES_DB: wtp-payments-db
+
+networks:
+  default:
+    external: true
+    name: payments-mgt-network
