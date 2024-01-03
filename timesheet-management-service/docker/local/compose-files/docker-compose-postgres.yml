@@ -1,0 +1,15 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  regnify-postgres:
+    image: postgres:15.0-alpine
+    container_name: wtp-standard-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: wtp-timesheets
+      POSTGRES_PASSWORD: WTPPASSWORD
+      POSTGRES_DB: wtp-payment-db
