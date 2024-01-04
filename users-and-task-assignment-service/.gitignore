@@ -1,0 +1,22 @@
+# ASP.NET Core specific
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.vscode/
+.vs/
+
+# User-specific files
+*.suo
+*.cache
+*.log
+*.userprefs
+*.bak
+
+# Visual Studio files
+**/bin/
+**/obj/
+*.log
+*.vs/
