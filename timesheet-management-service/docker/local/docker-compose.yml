@@ -54,7 +54,7 @@ services:
 
   postgres:
     image: postgres:15.0-alpine
-    container_name: wtp-payment-db
+    container_name: wtp-timesheets-db
     restart: always
     # volumes:
       # - ~/dockerPostgres/regnify:/var/lib/postgresql/data
@@ -69,4 +69,4 @@ services:
 networks:
   default:
     external: true
-    name: timesheets-mgt-network
+    name: worktrack-network

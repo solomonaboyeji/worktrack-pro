@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: timesheets-service-config
+data:
+  APP_NAME: "WTP-TIMESHEET-SERVICE"
+  ALLOW_ORIGINS: "http://localhost,http://localhost:8000"
+  ALLOW_ORIGIN_REGEX: "https://.*\\.regnify\\.com|https://.*\\.azurestaticapps\\.net|https://.*\\.netlify\\.app"
+  
+  DOC_URL: "/docs"
+  REDOC_URL: "/redoc"
+  DB_USER: "wtp-timesheets"
+  DB_PASSWORD: "WTPPASSWORD"
+  DB_HOST: "timesheets-db"
+  DB_NAME: "wtp-timesheets-db"
+  DB_PORT: "5432"
+  
+  OPENAPI_URL: "/openapi.json"
+  DISPLAY_SCOPES_IN_DOCUMENTATION: "True"
+  
+  # * This should only be used for development on your local machine.
+  # * Mount a volume on the server to reference these files.
+  KEYFILE: "/usr/src/timesheets-mgt-api/hypercorn/key.pem"
+  CERTFILE: "/usr/src/timesheets-mgt-api/hypercorn/cert.pem"
+
+  TCP_PORT: "8100"
+  SSL_PORT: "8101"
+  SHOULD_RELOAD: "True"
+  MAX_WORKERS: "1"
+  USE_SSL: "True"
+  USE_TCP: "True"

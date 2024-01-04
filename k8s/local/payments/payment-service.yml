@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-mgt-api-service
+spec:
+  selector:
+    app: payments-service-api
+  ports:
+    - protocol: TCP
+      port: 8300
+      targetPort: 8300
+      name: payment-port1
+      nodePort: 30000
+  type: NodePort

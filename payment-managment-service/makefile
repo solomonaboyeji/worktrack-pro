@@ -41,7 +41,7 @@ build-local:
 	docker compose -f docker/local/docker-compose.yml build 
 
 kill-local:
-	docker compose -f docker/local/docker-compose.yml down -v --remove-orphans
+	docker compose -p payment-service -f docker/local/docker-compose.yml down -v --remove-orphans
 
 run-local-migrations:
 	docker compose -f docker/local/docker-compose.yml run -v ./:/usr/src/payments-mgt-api  --rm payments-mgt-api  alembic upgrade head
@@ -54,7 +54,7 @@ run:
 
 	make make init-platform
 
-	docker compose -f docker/local/docker-compose.yml up  --remove-orphans  -d
+	docker compose -p payment-service -f docker/local/docker-compose.yml up  --remove-orphans  -d
 
 run-prod:
 	docker build -f Dockerfile.prod -t regnify-api .
@@ -118,6 +118,6 @@ run-tests:
 # ****************** MISC ****************** #
 
 create-network:
-	docker network create payments-mgt-network
+	docker network create worktrack-network
 
 # ****************** END MISC ****************** #

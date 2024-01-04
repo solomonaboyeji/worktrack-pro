@@ -76,4 +76,4 @@ services:
 networks:
   default:
     external: true
-    name: payments-mgt-network
+    name: worktrack-network

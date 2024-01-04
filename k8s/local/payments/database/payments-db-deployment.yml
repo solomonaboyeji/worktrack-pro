@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: payments-db
+  template:
+    metadata:
+      labels:
+        app: payments-db
+    
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15.0-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: 'wtp-payments'
+            - name: POSTGRES_PASSWORD
+              value: 'WTPPASSWORD'
+            - name: POSTGRES_DB
+              value: 'wtp-payments-db'
+          
+          volumeMounts:
+              - mountPath: /var/lib/postgresql/data
+                name: payments-db-storage
+      volumes:
+        - name: payments-db-storage
+          persistentVolumeClaim:
+            claimName: payments-db-pv-claim

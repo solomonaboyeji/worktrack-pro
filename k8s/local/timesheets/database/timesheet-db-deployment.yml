@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timesheets-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: timesheets-db
+  template:
+    metadata:
+      labels:
+        app: timesheets-db
+    
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15.0-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: 'wtp-timesheets'
+            - name: POSTGRES_PASSWORD
+              value: 'WTPPASSWORD'
+            - name: POSTGRES_DB
+              value: 'wtp-timesheets-db'
+          
+          volumeMounts:
+              - mountPath: /var/lib/postgresql/data
+                name: timesheets-db-storage
+      volumes:
+        - name: timesheets-db-storage
+          persistentVolumeClaim:
+            claimName: timesheets-db-pv-claim

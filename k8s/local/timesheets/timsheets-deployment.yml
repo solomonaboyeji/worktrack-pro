@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timesheets-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timesheets-service-api
+  
+  template:
+    metadata:
+      labels:
+        app: timesheets-service-api
+      
+    spec:
+      containers:
+        - name: timesheets-service-api
+          image: timesheets-mgt
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8300
+          envFrom:
+          - configMapRef:
+              name: timesheets-service-config
