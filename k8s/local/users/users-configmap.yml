@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-service-config
+data:
+  DATABASE_NAME: "wtp-users-db"
+  DATABASE_HOST: "users-db"
+  DATABASE_USERNAME: "wtp-users"
+  DATABASE_PASSWORD: "WTPPASSWORD"

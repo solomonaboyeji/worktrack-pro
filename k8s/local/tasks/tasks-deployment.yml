@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: tasks-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks-service-api
+  
+  template:
+    metadata:
+      labels:
+        app: tasks-service-api
+      
+    spec:
+      containers:
+        - name: tasks-service-api
+          image: tasks-mgt
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 4000
+          envFrom:
+          - configMapRef:
+              name: tasks-service-config

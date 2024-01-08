@@ -9,5 +9,12 @@
         "timesheets",
         "worktrack",
         "WTPPASSWORD"
-    ]
+    ],
+    "yaml.schemas": {
+        "https://json.schemastore.org/yamllint.json": [
+            "file:///Users/solomonaboyeji/Documents/BCU/CMP7174/JOB_AND_PAYROLL/k8s/local/tasks/tasks-configmap.yml",
+            "file:///Users/solomonaboyeji/Documents/BCU/CMP7174/JOB_AND_PAYROLL/k8s/local/tasks/tasks-deployment.yml",
+            "file:///Users/solomonaboyeji/Documents/BCU/CMP7174/JOB_AND_PAYROLL/k8s/local/tasks/tasks-service.yml"
+        ]
+    }
 }
