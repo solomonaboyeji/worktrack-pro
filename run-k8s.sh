@@ -6,6 +6,7 @@ eval $(minikube docker-env)
 cd payment-managment-service && docker build -f docker/Dockerfile -t payments-mgt . && cd ..
 cd timesheet-management-service && docker build -f docker/Dockerfile -t timesheets-mgt . && cd ..
 cd tasks-management-service && docker build -f Dockerfile -t tasks-mgt . && cd ..
+cd users-service && docker build -f Dockerfile -t users-mgt . && cd ..
 
 # Apply ConfigMaps
 # --- These contain configuration data for your services.
