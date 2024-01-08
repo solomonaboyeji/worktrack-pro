@@ -56,7 +56,7 @@ namespace JobTrackPro.Controllers
 
 
     
-        [HttpGet("{id}")]
+     
         [Route("api/skills/{id}")]
         [Authorize]
         public IActionResult GetSkillById(string id)

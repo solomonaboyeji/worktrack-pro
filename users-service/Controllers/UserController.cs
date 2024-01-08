@@ -59,7 +59,7 @@ namespace JobTrackPro.Controllers
 
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
+   
         [Route("api/users/{id}")]
         [Authorize]
         public IActionResult GetUserById(string id)

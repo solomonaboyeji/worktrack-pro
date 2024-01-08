@@ -75,7 +75,7 @@ namespace JobTrackPro.Controllers
         }
 
 
-        [HttpGet("{id}")]
+     
         [Route("api/usertasks/one/{id}")]
         [Authorize]
         public IActionResult GetUserTaskById(string id)
