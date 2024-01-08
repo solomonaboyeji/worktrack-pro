@@ -7,16 +7,6 @@
     -  Please deploy and instance of postgres database
     -  Please request for the values in appsetting.json
 
-####  Run migration with the 2 below commands
-
-```
-  Add-Migration InitiatedNewDatabase
-```
-
-```
- Update-Database
-```
-
 ####  Test endpoint from postman
 
 ```
