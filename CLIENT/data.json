@@ -1,0 +1,229 @@
+{
+    "admin": [
+        {
+            "firstName": "Aarav",
+            "lastName": "Patel",
+            "email": "aarav.patel@gmail.com",
+            "phoneNumber": "07123456789",
+            "postCode": "SW1A 1AA",
+            "password": "Adm1nP@ssw0rd",
+            "isLegalStatus": true,
+            "starTime": "2024-01-13",
+            "dob": "1985-06-15",
+            "role": "Admin"
+        },
+        {
+            "firstName": "Eleanor",
+            "lastName": "Smith",
+            "email": "eleanor.smith@gmail.com",
+            "phoneNumber": "07234567890",
+            "postCode": "W1A 1AA",
+            "password": "El3an0rS3cure",
+            "isLegalStatus": true,
+            "starTime": "2024-01-15",
+            "dob": "1990-11-22",
+            "role": "Admin"
+        }
+    ],
+    "staff": [
+        {
+            "firstName": "Jamal",
+            "lastName": "Johnson",
+            "email": "jamal.johnson@gmail.com",
+            "phoneNumber": "07345678901",
+            "postCode": "EC1A 1BB",
+            "password": "StaffP@ssw0rd1",
+            "isLegalStatus": true,
+            "starTime": "2024-01-20",
+            "dob": "1993-04-10",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Yasmin",
+            "lastName": "Ali",
+            "email": "yasmin.ali@gmail.com",
+            "phoneNumber": "07456789012",
+            "postCode": "N1P 1AA",
+            "password": "Yasmin1234",
+            "isLegalStatus": true,
+            "starTime": "2024-01-22",
+            "dob": "1988-02-19",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Liam",
+            "lastName": "Nguyen",
+            "email": "liam.nguyen@gmail.com",
+            "phoneNumber": "07567890123",
+            "postCode": "SE1 2AA",
+            "password": "LiamN2024",
+            "isLegalStatus": true,
+            "starTime": "2024-01-24",
+            "dob": "1994-08-05",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Sofia",
+            "lastName": "Martinez",
+            "email": "sofia.martinez@gmail.com",
+            "phoneNumber": "07678901234",
+            "postCode": "NW1 6XE",
+            "password": "SofiaMtz98",
+            "isLegalStatus": true,
+            "starTime": "2024-01-26",
+            "dob": "1998-01-16",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Oliver",
+            "lastName": "Brown",
+            "email": "oliver.brown@gmail.com",
+            "phoneNumber": "07789012345",
+            "postCode": "EC2A 3LT",
+            "password": "0liverB2024",
+            "isLegalStatus": true,
+            "starTime": "2024-01-28",
+            "dob": "1987-03-21",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Amelia",
+            "lastName": "Wang",
+            "email": "amelia.wang@gmail.com",
+            "phoneNumber": "07890123456",
+            "postCode": "W2 1HQ",
+            "password": "AmeliaWang123",
+            "isLegalStatus": true,
+            "starTime": "2024-02-01",
+            "dob": "1991-05-30",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Muhammad",
+            "lastName": "Khan",
+            "email": "muhammad.khan@gmail.com",
+            "phoneNumber": "07901234567",
+            "postCode": "E1 6AN",
+            "password": "MuhammadK2024",
+            "isLegalStatus": true,
+            "starTime": "2024-02-03",
+            "dob": "1989-09-15",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Zoe",
+            "lastName": "O'Connor",
+            "email": "zoe.oconnor@gmail.com",
+            "phoneNumber": "08012345678",
+            "postCode": "SW11 4NJ",
+            "password": "ZoeOC2024",
+            "isLegalStatus": true,
+            "starTime": "2024-02-05",
+            "dob": "1992-07-22",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Mikhail",
+            "lastName": "Ivanov",
+            "email": "mikhail.ivanov@gmail.com",
+            "phoneNumber": "08123456789",
+            "postCode": "N4 2DW",
+            "password": "Mikha12345",
+            "isLegalStatus": true,
+            "starTime": "2024-02-07",
+            "dob": "1990-10-31",
+            "role": "Staff"
+        },
+        {
+            "firstName": "Aisha",
+            "lastName": "Begum",
+            "email": "aisha.begum@gmail.com",
+            "phoneNumber": "08234567890",
+            "postCode": "W12 7TQ",
+            "password": "AishaB2024",
+            "isLegalStatus": true,
+            "starTime": "2024-02-09",
+            "dob": "1986-12-14",
+            "role": "Staff"
+        }
+    ],
+    "skills": [
+        {
+            "title": "Inventory Management",
+            "description": "Expertise in managing and organizing store inventory"
+        },
+        {
+            "title": "Customer Service",
+            "description": "Ability to provide excellent customer service"
+        },
+        {
+            "title": "Cash Handling",
+            "description": "Proficient in managing cash transactions and registers"
+        },
+        {
+            "title": "Product Knowledge",
+            "description": "In-depth knowledge of store products and services"
+        },
+        {
+            "title": "Sales Expertise",
+            "description": "Skilled in driving sales and meeting targets"
+        },
+        {
+            "title": "Visual Merchandising",
+            "description": "Ability to display products attractively in-store"
+        },
+        {
+            "title": "Teamwork",
+            "description": "Effective in working as part of a team"
+        },
+        {
+            "title": "Problem Solving",
+            "description": "Skilled at resolving customer issues and queries"
+        },
+        {
+            "title": "Time Management",
+            "description": "Efficient in managing tasks within set timeframes"
+        },
+        {
+            "title": "Health and Safety Awareness",
+            "description": "Knowledge of health and safety regulations in a retail environment"
+        }
+    ],
+    "tasks": [
+        {
+            "title": "Stock Replenishment",
+            "refNumber": "001",
+            "description": "Restocking shelves and ensuring product availability",
+            "minAge": "18",
+            "amountPerHour": "10"
+        },
+        {
+            "title": "Cashier",
+            "refNumber": "002",
+            "description": "Handling cash registers and customer transactions",
+            "minAge": "18",
+            "amountPerHour": "10"
+        },
+        {
+            "title": "Sales Assistant",
+            "refNumber": "003",
+            "description": "Assisting customers and driving sales",
+            "minAge": "18",
+            "amountPerHour": "10"
+        },
+        {
+            "title": "Product Organizer",
+            "refNumber": "004",
+            "description": "Organizing and maintaining product displays",
+            "minAge": "18",
+            "amountPerHour": "10"
+        },
+        {
+            "title": "Customer Service Representative",
+            "refNumber": "005",
+            "description": "Providing customer support and handling inquiries",
+            "minAge": "18",
+            "amountPerHour": "10"
+        }
+    ]
+}
