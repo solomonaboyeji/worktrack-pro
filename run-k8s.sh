@@ -2,7 +2,6 @@
 
 eval $(minikube docker-env)
 
-
 cd payment-managment-service && docker build -f docker/Dockerfile -t payments-mgt . && cd ..
 cd timesheet-management-service && docker build -f docker/Dockerfile -t timesheets-mgt . && cd ..
 cd tasks-management-service && docker build -f Dockerfile -t tasks-mgt . && cd ..
@@ -28,10 +27,12 @@ kubectl apply -f  k8s/local/users/users-configmap.yml
 # Apply Persistent Volume Claims
 # --- These define persistent storage for our databases
 # For Payments Database
-kubectl apply -f  k8s/local/payments/database/payments-db-pvc.yml
+# Not persisting this intentionally
+# kubectl apply -f  k8s/local/payments/database/payments-db-pvc.yml
 
 # --- For Timesheets Database
-kubectl apply -f  k8s/local/timesheets/database/timesheets-db-pvc.yml
+# Not persisting this intentionally
+# kubectl apply -f  k8s/local/timesheets/database/timesheets-db-pvc.yml
 
 # --- For Tasks
 kubectl apply -f  k8s/local/tasks/database/tasks-db-pvc.yml

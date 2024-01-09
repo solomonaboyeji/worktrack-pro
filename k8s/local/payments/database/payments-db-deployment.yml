@@ -31,5 +31,7 @@ spec:
                 name: payments-db-storage
       volumes:
         - name: payments-db-storage
-          persistentVolumeClaim:
-            claimName: payments-db-pv-claim
+        # Not persisting this intentionally
+          emptyDir: {}
+          # persistentVolumeClaim:
+          #   claimName: payments-db-pv-claim

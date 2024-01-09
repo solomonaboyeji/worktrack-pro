@@ -5,8 +5,11 @@
         "KEYFILE",
         "OPENAPI",
         "REDOC",
+        "signin",
+        "taskskill",
         "TIMESHEET",
         "timesheets",
+        "userskills",
         "worktrack",
         "WTPPASSWORD"
     ],

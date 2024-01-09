@@ -26,13 +26,13 @@ class TimesheetService:
     def clock_out(self, data: schemas.TimesheetClockOut):
         try:
             result = self.crud.update_timesheet(
-                task_id=data.task_id, user_id=data.user_id
+                task_id=data.task_id, user_id=data.user_id, hours_spent=data.hours_spent
             )
             return schemas.Timesheet.parse_obj(result.__dict__)
         except Exception as raised_exception:
             raise GeneralException(str(raised_exception))
 
-    def get_user_timesheets(self, user_id: UUID):
+    def get_user_timesheets(self, user_id: str):
         try:
             timesheets = self.crud.get_user_timesheets(user_id=user_id)
             total = self.crud.get_total_user_timesheets(user_id=user_id)
@@ -48,7 +48,7 @@ class TimesheetService:
     def get_task_timesheets(self, task_id: UUID):
         try:
             timesheets = self.crud.get_task_timesheets(task_id=task_id)
-            total = self.crud.get_total_task_timesheets(task_id = task_id)
+            total = self.crud.get_total_task_timesheets(task_id=task_id)
             return schemas.TimesheetOut.parse_obj(
                 {
                     "total": total,

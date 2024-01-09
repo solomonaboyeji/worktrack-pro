@@ -31,5 +31,7 @@ spec:
                 name: timesheets-db-storage
       volumes:
         - name: timesheets-db-storage
-          persistentVolumeClaim:
-            claimName: timesheets-db-pv-claim
+        # Not persisting this intentionally
+          emptyDir: {}
+          # persistentVolumeClaim:
+          #   claimName: timesheets-db-pv-claim

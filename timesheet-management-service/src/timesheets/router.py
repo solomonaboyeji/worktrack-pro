@@ -10,18 +10,21 @@ from src.timesheets.dependencies import (
 
 router = APIRouter(tags=["Timesheet"], prefix="/timesheet")
 
+
 @router.get("/", response_model=schemas.TimesheetOut)
 def get_timesheets(
     start_date: date = Query(
         date.today(), description="Gets timesheets starting from this day."
     ),
     end_date: date = Query(
-        date.today()-timedelta(days=7), description="Gets timesheets until this day."
+        date.today() - timedelta(days=7), description="Gets timesheets until this day."
     ),
     only_clocked_out: bool = Query(
         False, description="Returns Only timesheets that have been clocked out."
     ),
-    timesheet_service: TimesheetService = Security(initiate_timesheet_service, scopes=[]),
+    timesheet_service: TimesheetService = Security(
+        initiate_timesheet_service, scopes=[]
+    ),
 ):
     result = timesheet_service.get_timesheets(
         only_clocked_out=only_clocked_out,
@@ -29,6 +32,7 @@ def get_timesheets(
         end_date=end_date,
     )
     return result
+
 
 @router.post("/clock-in", response_model=schemas.Timesheet)
 def clock_in(
@@ -47,6 +51,7 @@ def clock_out(
     result = timesheet_service.clock_out(data=data)
     return result
 
+
 @router.get("/tasks/{task_id}", response_model=schemas.TimesheetOut)
 def get_task_timesheet(
     task_id: UUID,
@@ -54,6 +59,7 @@ def get_task_timesheet(
 ):
     result = timesheet_service.get_task_timesheets(task_id=task_id)
     return result
+
 
 @router.get("/{user_id}", response_model=schemas.TimesheetOut)
 def get_user_timesheets(

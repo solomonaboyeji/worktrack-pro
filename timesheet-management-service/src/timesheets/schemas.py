@@ -12,16 +12,17 @@ class ParentPydanticModel(BaseModel):
 
 
 class Timesheet(ParentPydanticModel):
-    task_id: UUID
-    user_id: UUID
+    task_id: str
+    user_id: str
     date_clocked_in: datetime
     date_clocked_out: Optional[datetime]
     date_recorded: datetime
 
 
 class TimesheetCreate(ParentPydanticModel):
-    task_id: UUID
-    user_id: UUID
+    task_id: str
+    user_id: str
+    hours_spent: int
 
 
 class TimesheetClockOut(TimesheetCreate):
@@ -34,7 +35,7 @@ class TimesheetOut(ParentPydanticModel):
 
 
 class User(ParentPydanticModel):
-    id: UUID
+    id: str
     username: str
 
 
@@ -43,4 +44,4 @@ class UserCreate(ParentPydanticModel):
 
 
 class Task(ParentPydanticModel):
-    id: UUID
+    id: str

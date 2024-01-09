@@ -3,8 +3,8 @@ from random import randint
 
 import requests
 
-USERS_API_URL = "http://192.168.64.8:30011"
-TASK_API_URL = "http://192.168.64.8:30010"
+USERS_API_URL = "http://192.168.64.10:30011"
+TASK_API_URL = "http://192.168.64.10:30010"
 
 data = json.loads(open("./data.json", "r").read())
 

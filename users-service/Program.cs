@@ -28,6 +28,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  });
 // Add services to the container.
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 
 builder.Services.AddDbContext<Model_DataContext>(
     O => O.UseNpgsql(builder.Configuration.GetConnectionString("Ef_Postgres_Db"))
@@ -54,6 +66,9 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+// Use CORS policy
+app.UseCors("MyAllowSpecificOrigins");
 
 app.UseAuthentication();
 

@@ -18,9 +18,11 @@ from src.database import Base
 class Wage(Base):
     __tablename__ = "wages"
 
-    id = Column(postgresql.UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
-    task_id = Column(postgresql.UUID(as_uuid=True), nullable=False)
-    user_id = Column(postgresql.UUID(as_uuid=True), nullable=False)
+    id = Column(
+        postgresql.UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4
+    )
+    task_id = Column(String(), nullable=False)
+    user_id = Column(String(), nullable=False)
     total_hours = Column(Float(asdecimal=True, decimal_return_scale=2), default=0)
     total_amount = Column(Float(asdecimal=True, decimal_return_scale=2), default=0)
     paid = Column(Boolean, default=False)

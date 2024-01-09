@@ -3,9 +3,15 @@ from sqlalchemy.exc import IntegrityError
 from src.timesheets.models import Timesheet
 from uuid import UUID
 from datetime import datetime, date, timedelta
-from src.exceptions import BaseConflictException, BaseNotFoundException, GeneralException
+from src.exceptions import (
+    BaseConflictException,
+    BaseNotFoundException,
+    GeneralException,
+)
 from sqlalchemy import and_
 from typing import Union
+
+
 class TimesheetCRUD:
     def __init__(self, db: Session) -> None:
         self.db = db
@@ -21,17 +27,21 @@ class TimesheetCRUD:
             raise BaseConflictException("This user has already clocked in this Task.")
         except Exception as raised_exception:
             raise GeneralException(raised_exception)
-        
+
     def update_timesheet(
-        self, user_id: UUID, task_id: UUID,
+        self, user_id: str, task_id: str, hours_spent: int = 8
     ) -> Timesheet:
         try:
-            db_timesheet = self.get_user_task_timesheet(task_id=task_id, user_id=user_id)
+            db_timesheet = self.get_user_task_timesheet(
+                task_id=task_id, user_id=user_id
+            )
             if db_timesheet is None:
                 raise BaseNotFoundException("The task does not exist.")
 
             if db_timesheet:
-                db_timesheet.date_clocked_out = datetime.utcnow()
+                db_timesheet.date_clocked_out = datetime.utcnow() + timedelta(
+                    hours=hours_spent
+                )
                 self.db.commit()
                 self.db.refresh(db_timesheet)
                 return db_timesheet
@@ -51,17 +61,15 @@ class TimesheetCRUD:
             .filter(Timesheet.task_id == task_id, Timesheet.user_id == user_id)
             .first()
         )
-    
+
     def get_timesheet(
-        self,
-        only_clocked_out: bool,
-        start_date: date,
-        end_date: date
+        self, only_clocked_out: bool, start_date: date, end_date: date
     ) -> Timesheet:
-        query_filter =  (self.db.query(Timesheet)
-            .filter(and_(
-                Timesheet.date_recorded<=start_date+timedelta(days=1), Timesheet.date_recorded>=end_date
-            ))
+        query_filter = self.db.query(Timesheet).filter(
+            and_(
+                Timesheet.date_recorded <= start_date + timedelta(days=1),
+                Timesheet.date_recorded >= end_date,
+            )
         )
         if only_clocked_out:
             query_filter = query_filter.filter(Timesheet.date_clocked_out.isnot(None))
@@ -69,15 +77,13 @@ class TimesheetCRUD:
         return query_filter.all()
 
     def timesheets_total(
-        self,
-        only_clocked_out: bool,
-        start_date: date,
-        end_date: date
+        self, only_clocked_out: bool, start_date: date, end_date: date
     ):
-        query_filter =  (self.db.query(Timesheet)
-            .filter(and_(
-                Timesheet.date_recorded<=start_date+timedelta(days=1), Timesheet.date_recorded>=end_date
-            ))
+        query_filter = self.db.query(Timesheet).filter(
+            and_(
+                Timesheet.date_recorded <= start_date + timedelta(days=1),
+                Timesheet.date_recorded >= end_date,
+            )
         )
         if only_clocked_out:
             query_filter = query_filter.filter(Timesheet.date_clocked_out.isnot(None))
