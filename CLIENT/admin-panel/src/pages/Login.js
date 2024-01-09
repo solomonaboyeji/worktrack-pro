@@ -67,7 +67,7 @@ function Login(props) {
 
     const result = await postLoginData(loginData)
     if (result) {
-      props.history.push("/app")
+      props.history.push("/app/admin/skills")
     }
   }
 
