@@ -105,3 +105,12 @@ kubectl apply -f  k8s/local/tasks/tasks-service.yml
 
 # --- For Users
 kubectl apply -f  k8s/local/users/users-service.yml
+
+# Run Alembic Upgrade Timesheet and Payment PODs using their match labels
+for app in payments-service-api timesheets-service-api; do
+    pods=$(kubectl get pods -l app=$app -o name)
+    for pod in $pods; do
+        echo "Executing command in $pod"
+        kubectl exec $pod -- alembic upgrade heads
+    done
+done
