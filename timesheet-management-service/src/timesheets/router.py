@@ -1,6 +1,5 @@
 from datetime import date, timedelta
 from fastapi import APIRouter, Security, Query
-from uuid import UUID
 from src.timesheets.service import TimesheetService
 import src.timesheets.schemas as schemas
 from src.timesheets.dependencies import (
@@ -54,7 +53,7 @@ def clock_out(
 
 @router.get("/tasks/{task_id}", response_model=schemas.TimesheetOut)
 def get_task_timesheet(
-    task_id: UUID,
+    task_id: str,
     timesheet_service: TimesheetService = Security(initiate_timesheet_service),
 ):
     result = timesheet_service.get_task_timesheets(task_id=task_id)
@@ -63,7 +62,7 @@ def get_task_timesheet(
 
 @router.get("/{user_id}", response_model=schemas.TimesheetOut)
 def get_user_timesheets(
-    user_id: UUID,
+    user_id: str,
     timesheet_service: TimesheetService = Security(initiate_timesheet_service),
 ):
     result = timesheet_service.get_user_timesheets(user_id=user_id)
@@ -72,8 +71,8 @@ def get_user_timesheets(
 
 @router.get("/{user_id}/{task_id}", response_model=schemas.Timesheet)
 def get_user_task_timesheet(
-    task_id: UUID,
-    user_id: UUID,
+    task_id: str,
+    user_id: str,
     timesheet_service: TimesheetService = Security(initiate_timesheet_service),
 ):
     result = timesheet_service.get_user_task_timesheet(task_id=task_id, user_id=user_id)

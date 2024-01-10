@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from src.timesheets.models import Timesheet
-from uuid import UUID
 from datetime import datetime, date, timedelta
 from src.exceptions import (
     BaseConflictException,
@@ -16,7 +15,7 @@ class TimesheetCRUD:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def create_timesheet(self, user_id: UUID, task_id: UUID) -> Timesheet:
+    def create_timesheet(self, user_id: str, task_id: str) -> Timesheet:
         try:
             db_timesheet = Timesheet(task_id=task_id, user_id=user_id)
             self.db.add(db_timesheet)
@@ -49,13 +48,13 @@ class TimesheetCRUD:
         except Exception as raised_exception:
             raise GeneralException(str(raised_exception))
 
-    def get_user_timesheets(self, user_id: UUID) -> list[Timesheet]:
+    def get_user_timesheets(self, user_id: str) -> list[Timesheet]:
         return self.db.query(Timesheet).filter(Timesheet.user_id == user_id).all()
 
-    def get_task_timesheets(self, task_id: UUID) -> list[Timesheet]:
+    def get_task_timesheets(self, task_id: str) -> list[Timesheet]:
         return self.db.query(Timesheet).filter(Timesheet.task_id == task_id).all()
 
-    def get_user_task_timesheet(self, task_id: UUID, user_id: UUID) -> Timesheet:
+    def get_user_task_timesheet(self, task_id: str, user_id: str) -> Timesheet:
         return (
             self.db.query(Timesheet)
             .filter(Timesheet.task_id == task_id, Timesheet.user_id == user_id)
@@ -90,8 +89,8 @@ class TimesheetCRUD:
 
         return query_filter.count()
 
-    def get_total_user_timesheets(self, user_id: UUID) -> int:
+    def get_total_user_timesheets(self, user_id: str) -> int:
         return self.db.query(Timesheet).filter(Timesheet.user_id == user_id).count()
 
-    def get_total_task_timesheets(self, task_id: UUID) -> int:
+    def get_total_task_timesheets(self, task_id: str) -> int:
         return self.db.query(Timesheet).filter(Timesheet.task_id == task_id).count()

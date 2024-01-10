@@ -1,6 +1,5 @@
 from datetime import date
 from sqlalchemy.orm import Session
-from uuid import UUID
 from src.timesheets.crud import TimesheetCRUD
 from src.exceptions import GeneralException
 import src.timesheets.schemas as schemas
@@ -45,7 +44,7 @@ class TimesheetService:
         except Exception as raised_exception:
             raise GeneralException(str(raised_exception))
 
-    def get_task_timesheets(self, task_id: UUID):
+    def get_task_timesheets(self, task_id: str):
         try:
             timesheets = self.crud.get_task_timesheets(task_id=task_id)
             total = self.crud.get_total_task_timesheets(task_id=task_id)
@@ -58,7 +57,7 @@ class TimesheetService:
         except Exception as raised_exception:
             raise GeneralException(str(raised_exception))
 
-    def get_user_task_timesheet(self, task_id: UUID, user_id: UUID):
+    def get_user_task_timesheet(self, task_id: str, user_id: str):
         try:
             timesheet = self.crud.get_user_task_timesheet(
                 task_id=task_id, user_id=user_id

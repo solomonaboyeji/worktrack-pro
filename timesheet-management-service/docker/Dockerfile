@@ -15,4 +15,5 @@ ADD .. /usr/src/timesheets-mgt-api/
 WORKDIR /usr/src/timesheets-mgt-api/
 EXPOSE 8100
 
-CMD ["gunicorn", "-w 1", "-b 0.0.0.0:8300", "-t 30" , "-k", "uvicorn.workers.UvicornWorker", "src.main:app" ]
+# CMD ["gunicorn", "-w 1", "-b 0.0.0.0:8300", "-t 30" , "-k", "uvicorn.workers.UvicornWorker", "src.main:app" ]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8300"]

@@ -77,7 +77,7 @@ namespace JobTrackPro.Controllers
 
      
         [Route("api/usertasks/one/{id}")]
-        [Authorize]
+        // [Authorize]
         public IActionResult GetUserTaskById(string id)
         {
             ResponseType type = ResponseType.Success;
