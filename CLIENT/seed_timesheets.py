@@ -36,6 +36,7 @@ url = f"{USERS_API_URL}/api/usertasks"
 response = requests.get(url, headers=token_headers)
 staff_tasks = response.json()["responseData"]
 
+
 for assigned_task in staff_tasks:
     # get all the task this user has been assigned to
 
