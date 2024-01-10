@@ -7,6 +7,7 @@ USERS_API_URL = "http://192.168.64.10:30011"
 TASK_API_URL = "http://192.168.64.10:30010"
 
 TIME_SHEET_URL = "http://192.168.64.10:30001/timesheet"
+PAYMENT_URL = "http://192.168.64.10:30000"
 
 
 data = json.loads(open("./data.json", "r").read())
@@ -70,6 +71,14 @@ for assigned_task in staff_tasks:
         print(
             f"{staff['firstName']} {staff['lastName']} clocked out at {response.json()['date_clocked_out']}"
         )
+        # compute wages
+        response = requests.post(
+            f"{PAYMENT_URL}/{assigned_task['taskId']}/compute-task-wages",
+            headers=token_headers,
+        )
+        assert (
+            response.status_code == 200
+        ), f"There was a problem computing the wage of a staff {response.content}"
     else:
         print(response.status_code, response.content)
 

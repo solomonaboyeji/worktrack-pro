@@ -4,7 +4,7 @@ metadata:
   name: payments-service-api-config
 data:
   APP_NAME: "WTP-PAYMENTS-SERVICE"
-  ALLOW_ORIGINS: "http://localhost,http://localhost:8000"
+  ALLOW_ORIGINS: "*"
   ALLOW_ORIGIN_REGEX: "https://.*\\.regnify\\.com|https://.*\\.azurestaticapps\\.net|https://.*\\.netlify\\.app"
   DOC_URL: "/docs"
   REDOC_URL: "/redoc"
@@ -35,5 +35,5 @@ data:
   GET_CURRENT_USER: "http://users-mgt-api-service:8080/user"
   GET_TASK_URL: "http://tasks-mgt-api-service:4000/task"
 
-  GET_TIMESHEETS_URL: "http://timesheets-mgt-api-service:8300/timesheets"
+  GET_TIMESHEETS_URL: "http://timesheets-mgt-api-service:8300/timesheet"
   GET_TIMESHEETS_BY_TASK_ID_URL: "http://timesheets-mgt-api-service:8300/timesheet/tasks"

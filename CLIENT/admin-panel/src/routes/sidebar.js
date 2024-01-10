@@ -53,6 +53,11 @@ const routes = [
       }
     ],
   },
+  {
+    icon: 'PagesIcon',
+    path: '/app/admin/timesheets',
+    name: 'Timesheets',
+  }
 ]
 
 export default routes

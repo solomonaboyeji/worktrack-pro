@@ -4,7 +4,7 @@ metadata:
   name: timesheets-service-config
 data:
   APP_NAME: "WTP-TIMESHEET-SERVICE"
-  ALLOW_ORIGINS: "http://localhost,http://localhost:8000"
+  ALLOW_ORIGINS: "*"
   ALLOW_ORIGIN_REGEX: "https://.*\\.regnify\\.com|https://.*\\.azurestaticapps\\.net|https://.*\\.netlify\\.app"
   
   DOC_URL: "/docs"
@@ -29,3 +29,5 @@ data:
   MAX_WORKERS: "1"
   USE_SSL: "True"
   USE_TCP: "True"
+
+  COMPUTE_TASK_WAGE_URL: "http://payments-mgt-api-service:8300/{0}/compute-task-wages"

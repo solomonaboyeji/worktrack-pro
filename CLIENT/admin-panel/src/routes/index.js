@@ -3,6 +3,7 @@ import ListSkills from '../pages/Skills/ListSkills'
 import ListTasks from '../pages/Tasks/ListTasks'
 import NewTask from '../pages/Tasks/NewTask'
 import ListStaffs from '../pages/Staff/ListStaff'
+import Timesheets from '../pages/TimeSheets'
 
 // use lazy for better code splitting, a.k.a. load faster
 const Dashboard = lazy(() => import('../pages/Dashboard'))
@@ -82,6 +83,10 @@ const routes = [
   {
     path: '/admin/staffs',
     component: ListStaffs,
+  },
+  {
+    path: '/admin/timesheets',
+    component: Timesheets,
   },
 ]
 

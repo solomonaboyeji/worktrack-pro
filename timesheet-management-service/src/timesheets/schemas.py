@@ -12,6 +12,7 @@ class ParentPydanticModel(BaseModel):
 
 
 class Timesheet(ParentPydanticModel):
+    id: UUID
     task_id: str
     user_id: str
     date_clocked_in: datetime
