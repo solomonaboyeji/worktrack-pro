@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: tasks-db
+  template:
+    metadata:
+      labels:
+        app: tasks-db
+    
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.2.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_USER
+              value: 'wtp-tasks'
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'WTPPASSWORD'
+            - name: MYSQL_PASSWORD
+              value: 'WTPPASSWORD'
+            - name: MYSQL_DATABASE
+              value: 'wtp-tasks-db'
+          
+          volumeMounts:
+              - mountPath: /var/lib/mysql
+                name: tasks-db-storage
+      volumes:
+        - name: tasks-db-storage
+          persistentVolumeClaim:
+            claimName: tasks-db-pv-claim

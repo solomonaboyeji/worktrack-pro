@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tasks-service-config
+data:
+  DATABASE_NAME: "wtp-tasks-db"
+  DATABASE_HOST: "tasks-db"
+  DATABASE_USERNAME: "wtp-tasks"
+  DATABASE_PASSWORD: "WTPPASSWORD"
+  waitForConnections: "true"
+  connectionLimit: "10000"
+  queueLimit: "1"
+  dialect: "mysql"
+  max: "5"
+  min: "0"
+  acquire: "30000"
+  idle: "10000"
+  PORT: "4000"

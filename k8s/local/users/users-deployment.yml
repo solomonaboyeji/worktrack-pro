@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: users-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-service-api
+  
+  template:
+    metadata:
+      labels:
+        app: users-service-api
+      
+    spec:
+      containers:
+        - name: users-service-api
+          image: users-mgt
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+          - configMapRef:
+              name: users-service-config

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: users-db
+  template:
+    metadata:
+      labels:
+        app: users-db
+    
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15.0-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: 'wtp-users'
+            - name: POSTGRES_PASSWORD
+              value: 'WTPPASSWORD'
+            - name: POSTGRES_DB
+              value: 'wtp-users-db'
+          
+          volumeMounts:
+              - mountPath: /var/lib/postgresql/data
+                name: users-db-storage
+      volumes:
+        - name: users-db-storage
+          persistentVolumeClaim:
+            claimName: users-db-pv-claim
